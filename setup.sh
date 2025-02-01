@@ -14,7 +14,6 @@ sudo nala fetch --auto
 box "Install basic packages"
 sudo nala install nano wget curl ca-certificates git -y
 
-# Docker
 box "Docker"
 echo "Remove conflicting pkgs"
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
@@ -41,6 +40,12 @@ echo "Docker post-install - allow current user without sudo"
 # -f = don't error if exists
 sudo groupadd -f docker
 sudo usermod -aG docker $USER
+
+box "Webmin"
+curl -o webmin-setup-repos.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repos.sh
+sh webmin-setup-repos.sh
+sudo nala install webmin -y
+
 
 box "Complete!"
 
