@@ -12,7 +12,13 @@ sudo apt install nala -y
 sudo nala fetch --auto
 
 box "Install basic packages"
-sudo nala install nano wget curl ca-certificates git -y
+sudo nala install \
+  nano \
+  wget curl \
+  ca-certificates \
+  git \
+  python-is-python3 python3-venv python3-pip \
+  -y
 
 box "Docker"
 echo "Remove conflicting pkgs"
